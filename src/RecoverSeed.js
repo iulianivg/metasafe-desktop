@@ -22,7 +22,8 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import BallotIcon from '@material-ui/icons/Ballot';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 
 import recovery from './Smart Contract/recovery';
@@ -35,6 +36,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
+  firebase.initializeApp({
+    apiKey:"AIzaSyBJdivJB2nHiPv-nrWfAclYdIn3rafksDk",
+    authDomain:"metasafe-desktop.firebaseapp.com"
+  });
 
 export default class RecoverSeed extends React.Component {
 
@@ -74,9 +79,25 @@ export default class RecoverSeed extends React.Component {
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0)
+      firebase.auth().onAuthStateChanged(user => {
+        this.setState({signedIn: !!user})
+      })
+        window.scrollTo(0, 0);
+
       }
     
+    uiConfig = { 
+      signInFlow: "popup",
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      callbacks: {
+        signInSuccess: () => false
+      }
+    }
+
+
 
     forceWord = async() => {
         try{ 
@@ -324,6 +345,14 @@ let walletPath = {
                 </Grid>
                 <br /> 
                 <Divider style={{width:'100%'}} />
+                {this.state.signedIn === true ? (
+                  <div>
+                    <Grid item xs={12}>
+                    <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
+
+                    </Grid>
+                  </div>
+                ) : <span /> }
                 <Grid item xs={12} md={2} />
                 <Grid item xs={12} md ={8}>
                 {this.state.seeData === true ? (
@@ -345,8 +374,10 @@ let walletPath = {
                     ) : <span />}
                     
                 {this.state.signedIn === false ? (<div>
+
                     You're on the free version. Please sign in and get our premium access to benefit from the following:
                         <br /> <br />
+                        
                     <Grid container spacing={3}>
                 <Grid item xs={4}>
                     <LockOpenIcon fontSize="large"/>
@@ -389,7 +420,16 @@ let walletPath = {
         See what is being analysed and not just a loading icon
 
       </Typography>
+      <Divider style={{width:'100%'}} />
       </Grid>
+              <Grid item xs={12}>
+              <StyledFirebaseAuth 
+          uiConfig={this.uiConfig}
+          firebaseAuth={firebase.auth()}
+        
+          />
+              </Grid>
+
                 </Grid>
 
                 </div>) : <span />}
