@@ -81,8 +81,8 @@ export default class RecoverSeed extends React.Component {
     componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
         this.setState({signedIn: !!user})
+        console.log(user);
       })
-        window.scrollTo(0, 0);
 
       }
     
