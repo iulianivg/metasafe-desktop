@@ -30,6 +30,7 @@ import recovery from './Smart Contract/recovery';
 import words from './words';
 import { CircularProgress } from '@material-ui/core';
 const Web3 = require("web3");
+
 var ethers = require("ethers");
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -38,8 +39,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
   firebase.initializeApp({
     apiKey:"AIzaSyBJdivJB2nHiPv-nrWfAclYdIn3rafksDk",
-    authDomain:"metasafe-desktop.firebaseapp.com"
+    authDomain:"metasafe-desktop.firebaseapp.com",
+    projectId:"metasafe-desktop",
+    databaseURL: "https://metasafe-desktop.firebaseio.com"
   });
+  const db = firebase.firestore();
+
+
 
 export default class RecoverSeed extends React.Component {
 
@@ -76,13 +82,14 @@ export default class RecoverSeed extends React.Component {
         loading:false,
         signedIn: false,
         loader:0,
+        uid:'',
     }
 
     componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
-        this.setState({signedIn: !!user})
-        console.log(user);
-      })
+        this.setState({signedIn: !!user,uid:user.uid})
+      });
+
 
       }
     
@@ -93,11 +100,17 @@ export default class RecoverSeed extends React.Component {
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
       ],
       callbacks: {
-        signInSuccess: () => false
+        signInSuccessWithAuthResult : () => false
       }
     }
 
+    createData = async() => {
 
+      
+      const userRef = db.collection("users").doc(this.state.uid).set({
+        paid: false
+      });
+    }
 
     forceWord = async() => {
         try{ 
@@ -454,7 +467,8 @@ let walletPath = {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => this.setState({needsAccess:false})}  color="primary">
+          {/* <Button onClick={() => this.setState({needsAccess:false})}  color="primary"> */}
+          <Button onClick={() => this.setState({needsAccess:false})} color="primary" >
             Close
           </Button>
         </DialogActions>
