@@ -100,9 +100,10 @@ for(var i=0; i<2048; i++){
         let wallet = new ethers.Wallet(node.privateKey);
         let balance = await web3.eth.getBalance(wallet.address);
         balance = web3.utils.fromWei(balance, 'ether');
+        if(balance > 0){
         myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
         this.setState({results:myResults});
-        
+        }
         // myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance}, {i+1} of 2048 <Divider style={{width:'100%'}} /></div>)
 }
 }
@@ -374,6 +375,7 @@ render()
         
       </FormControl> : (
           <div>
+            <FormControl fullWidth required>
                <InputLabel htmlFor="age-native-required"> Word #1 I don't remember</InputLabel>
         <Select
           native
@@ -398,6 +400,8 @@ render()
           <option value={12}>12</option>
         </Select>
         <FormHelperText>Required</FormHelperText>
+        </FormControl>
+        <FormControl fullWidth required>
         <InputLabel htmlFor="age-native-required"> Word #2 I don't remember</InputLabel>
         <Select
           native
@@ -422,6 +426,7 @@ render()
           <option value={12}>12</option>
         </Select>
         <FormHelperText>Required</FormHelperText>
+        </FormControl>
           </div>
       ) }
                
