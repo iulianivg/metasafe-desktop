@@ -127,7 +127,7 @@ export default class RecoverSeed extends React.Component {
                   </Grid><Grid xs={12} md={4} style={{color:'white'}} >
                     <SecurityIcon fontSize="large" htmlColor="red" />
                     <h3>Secure</h3>
-                    <p>Mnemonics are never transmitted over the internet
+                    <p>We don't collect or share your data
                     </p>
                   </Grid>
 
@@ -138,8 +138,7 @@ export default class RecoverSeed extends React.Component {
                 <Divider style={{width:'100'}} />
             <br />
             
-            <Grid container spacing={3} >
-              
+            {this.state.signedIn === false ? <Recover_basic /> : null}
                {/* {this.state.isPaid === true ? <p>Paid user</p> : <p>not paid</p>} */}
                 {this.state.signedIn === true ? (
                   <div>
@@ -147,7 +146,7 @@ export default class RecoverSeed extends React.Component {
                     <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
 
                     </Grid>
-                    {this.state.signedIn === false || this.state.isPaid === false ?                     <Recover_basic /> : null}
+                    {this.state.isPaid === false ?                     <Recover_basic /> : null}
                   </div>
                 ) : <span /> }
                
@@ -160,9 +159,11 @@ export default class RecoverSeed extends React.Component {
         
           />
               </Grid>
+              <Grid item xs={12}>
+
                     You're on the free version. Please sign in and get our premium access to benefit from the following:
                         <br /> <br />
-                        
+                        </Grid> 
                     <Grid container spacing={3}>
                 <Grid item xs={4}>
                     <LockOpenIcon fontSize="large"/>
@@ -272,7 +273,6 @@ export default class RecoverSeed extends React.Component {
                 </div>
 
           ) : this.state.signedIn === true && this.state.isPaid === true ? <Recover_advanced /> : <span /> }
-                </Grid>
 
 
             </div>

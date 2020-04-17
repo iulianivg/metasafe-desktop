@@ -67,7 +67,7 @@ forceWord = async() => {
 // const apiLink = options.api;
 const apiLink = this.state.apiLink;
 // const apiLink= "http://127.0.0.1:8545";
-if(apiLink.includes('infura.io/v3') && apiLink !== ''){
+if(apiLink !== '' && (apiLink.startsWith('https://mainnet.infura.io/v3') || apiLink.startsWith('https://rinkeby.infura.io/v3') || apiLink.startsWith('https://kovan.infura.io/v3') || apiLink.startsWith('https://ropsten.infura.io/v3') || apiLink.startsWith('https://goerli.infura.io/v3')) ){
 
     let walletPath = {
         "standard": `m/44'/60'/0'/0/0`,
@@ -189,7 +189,7 @@ render()
                             <Grid container spacing={3} >
 
  <Grid item xs={6}>
-              <TextField fullWidth style={{marginLeft:'7%'}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Infura API Link" />
+              <TextField fullWidth style={{marginLeft:'11%'}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Infura API Link" />
               </Grid>
               <Grid item xs={6}> 
 
@@ -270,7 +270,7 @@ render()
                     </Grid>
                     <Snackbar open={this.state.snackBar} autoHideDuration={6000} onClose={this.handleSnackbar}>
         <Alert onClose={this.handleSnackbar} severity="error">
-          Error. You're on the free plan and API must include infura link! Check <a style={{color:'inherit'}} href="https://infura.io" target="_blank"  rel='noopener noreferrer'>Infura.io</a> <br />
+          Error. You're on the free plan and API must be infura link! Check <a style={{color:'inherit'}} href="https://infura.io" target="_blank"  rel='noopener noreferrer'>Infura.io</a> <br />
            Your link will be something like:  https://mainnet.infura.io/v3/infuraToken   <br />
                    <Button onClick={() => this.setState({snackBar:false})}>Close</Button>
 

@@ -305,7 +305,7 @@ render()
                             <Grid container spacing={3} >
 
  <Grid item xs={12} md={6}>
-              <TextField fullWidth style={{marginLeft:'7%'}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Any API Link (Infura, Quicknode, Geth, Etherscan, etc.)" />
+              <TextField fullWidth style={{marginLeft:'7%'}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Any API Link (Infura, Quiknode, Geth, etc.)" />
               </Grid>
               <Grid item xs={12} md={6}> 
               <TextField style={{marginLeft:'7%', width:'90%'}} required id="standard-basic" value={this.state.walletPath} onChange={(event) => this.setState({walletPath:event.target.value.trim()})} label="Wallet Path. Example: m/44'/60'/0'/0/0" />
