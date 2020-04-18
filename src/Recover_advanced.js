@@ -62,6 +62,7 @@ state = {
     walletPath:`m/44'/60'/0'/0/0`,
     wordRemember:'2',
     currentWords:[11,12],
+    showAll:true,
 }
 forceWord = async() => {
     try{ 
@@ -85,7 +86,7 @@ this.setState({snackBar:false})
 let mnemonic = [];
 let emptyArray = this.state.results;
 emptyArray.length = 0;
-this.setState({results:emptyArray,hasStarted:true,seeData:true,loader:0})
+this.setState({results:emptyArray,hasStarted:true,seeData:true,loader:0,showAll:true})
 mnemonic.push(this.state.word1.toLowerCase(),this.state.word2.toLowerCase(), this.state.word3.toLowerCase(),this.state.word4.toLowerCase(),this.state.word5.toLowerCase(),this.state.word6.toLowerCase(),
 this.state.word7.toLowerCase(),this.state.word8.toLowerCase(),this.state.word9.toLowerCase(),this.state.word10.toLowerCase(),this.state.word11.toLowerCase(),this.state.word12.toLowerCase());
 let userIndex = this.state.wordIndex-1;
@@ -101,7 +102,10 @@ for(var i=0; i<2048; i++){
         let balance = await web3.eth.getBalance(wallet.address);
         balance = web3.utils.fromWei(balance, 'ether');
         if(balance > 0){
-        myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
+        myResults.push(<div style={{padding:'5px'}} classname="hasBalance">Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
+        this.setState({results:myResults});
+        } else {
+            myResults.push(<div style={{padding:'5px'}} classname="noBalance">Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
         this.setState({results:myResults});
         }
         // myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance}, {i+1} of 2048 <Divider style={{width:'100%'}} /></div>)
@@ -143,7 +147,7 @@ this.setState({snackBar:false})
 let mnemonic = [];
 let emptyArray = this.state.results;
 emptyArray.length = 0;
-this.setState({results:emptyArray,hasStarted:true,seeData:true,loader:0})
+this.setState({results:emptyArray,hasStarted:true,seeData:true,loader:0,showAll:true})
 mnemonic.push(this.state.word1.toLowerCase(),this.state.word2.toLowerCase(), this.state.word3.toLowerCase(),this.state.word4.toLowerCase(),this.state.word5.toLowerCase(),this.state.word6.toLowerCase(),
 this.state.word7.toLowerCase(),this.state.word8.toLowerCase(),this.state.word9.toLowerCase(),this.state.word10.toLowerCase(),this.state.word11.toLowerCase(),this.state.word12.toLowerCase());
 let userIndex = this.state.wordIndex-1;
@@ -161,8 +165,13 @@ for(var i=0; i<2048; i++){
         let wallet = new ethers.Wallet(node.privateKey);
         let balance = await web3.eth.getBalance(wallet.address);
         balance = web3.utils.fromWei(balance, 'ether');
-        myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
+        if(balance > 0) {
+        myResults.push(<div style={{padding:'5px'}} classname="hasBalance">Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
         this.setState({results:myResults});
+        } else {
+            myResults.push(<div style={{padding:'5px'}} classname="noBalance">Mnemonic {mnemonic.join(" ")} with balance {balance} has been recovered! <Divider style={{width:'100%'}} /></div>);
+        this.setState({results:myResults});
+        }
         
         // myResults.push(<div style={{padding:'5px'}}>Mnemonic {mnemonic.join(" ")} with balance {balance}, {i+1} of 2048 <Divider style={{width:'100%'}} /></div>)
 }
@@ -180,6 +189,16 @@ this.setState({snackBar:true});
     catch(err){
         console.log(err.message);
     }
+}
+
+
+filterWords = async() => {
+    this.setState({showAll:false});
+}
+
+filterWords2 = async() => {
+    this.setState({showAll:true});
+
 }
 
 render()
@@ -449,10 +468,23 @@ render()
                         <div>
                             {this.state.loader < 99 ? (<div>                        Analyzing 2048 possible seed phrases...
                             If anything is found it will appear here. <span style={{fontWeight:'bold'}}>Do not close this window.</span> </div>) : <div>Finished</div> }
-                    {this.state.results.length === 0 && this.state.hasStarted === false ? <p>Nothing found</p> : <span />}
+                    {this.state.results.length === 0 && this.state.hasStarted === false ? <p>Nothing found</p> : null}
+                    {this.state.results.length !== 0 ? (
+                        <Grid container>
+                        <Grid xs={6}>
+                        <Button fullWidth onClick={() => this.setState({showAll:true})}>All Results</Button>
+                        </Grid>
+                        <Grid xs={6}>
+                        <Button fullWidth onClick={() => this.setState({showAll:false})}>Results with Balance</Button>
+                        </Grid>
+                        </Grid>
+                    ) : null}
                         <Paper elevation={1}>
                         <div style={{height:'310px',overflow:'scroll',textAlign:'left'}}>
-                    {this.state.results}
+                    {this.state.showAll === true ? this.state.results : (this.state.results.filter(element => element.props.classname.includes("hasBalance")).map(element => (<div>{element}</div>)
+                    )
+)}
+
                     </div>
                     </Paper>
                         </div>

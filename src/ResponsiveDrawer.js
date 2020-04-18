@@ -22,6 +22,8 @@ import Text from './Text';
 import MnemonicMaker from './MnemonicMaker';
 import Donate from './Donate.js';
 import RecoverSeed from './RecoverSeed.js';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Instruction from './Instruction.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -146,6 +148,14 @@ function ResponsiveDrawer(props) {
             <ListItemText primary="Recover Your Seed Phrase" />
             </ListItem>
           </Link>
+        <Link to ="/instructions" style={{textDecoration:'none',color:'inherit'}}>
+        <ListItem button>
+  <ListItemIcon>
+    <MenuBookIcon htmlColor="#115293" /> 
+    </ListItemIcon>
+    <ListItemText primary="Instructions" /> 
+        </ListItem>
+        </Link>
       </List>
     </div>
   );
@@ -218,6 +228,9 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route exact path="/recover">
             <RecoverSeed />
+          </Route>
+          <Route exact path="/instructions">
+              <Instruction />
           </Route>
         </Switch>
             {/* {tabOpen === 1 ?         <MnemonicMaker /> : tabOpen=== 2 ? <Text /> :  tabOpen === 3 ? <WHOpage /> : <span />} */}

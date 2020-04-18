@@ -12,7 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import SpeedIcon from '@material-ui/icons/Speed';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import SecurityIcon from '@material-ui/icons/Security';
-
+import ViewQuiltIcon from '@material-ui/icons/ViewQuilt';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import BallotIcon from '@material-ui/icons/Ballot';
@@ -21,7 +21,13 @@ import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Recover_basic from './Recover_basic';
 import Recover_advanced from './Recover_advanced';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 import recovery from './Smart Contract/recovery';
+import Container from '@material-ui/core/Container';
+
 import words from './words';
 import { CircularProgress } from '@material-ui/core';
 const Web3 = require("web3");
@@ -142,7 +148,7 @@ export default class RecoverSeed extends React.Component {
                {/* {this.state.isPaid === true ? <p>Paid user</p> : <p>not paid</p>} */}
                 {this.state.signedIn === true ? (
                   <div>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{textAlign:'left'}}>
                     <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
 
                     </Grid>
@@ -153,110 +159,92 @@ export default class RecoverSeed extends React.Component {
                     
                 {this.state.signedIn === false ? (<div>
                   <Grid item xs={12}>
+
+                    You're on the free version. Please sign in and get our premium access to get more features.
+                        <br /> <br />
+                        </Grid> 
+                  <Grid item xs={12}>
               <StyledFirebaseAuth 
           uiConfig={this.uiConfig}
           firebaseAuth={firebase.auth()}
         
           />
               </Grid>
-              <Grid item xs={12}>
-
-                    You're on the free version. Please sign in and get our premium access to benefit from the following:
-                        <br /> <br />
-                        </Grid> 
-                    <Grid container spacing={3}>
-                <Grid item xs={4}>
-                    <LockOpenIcon fontSize="large"/>
-                    <Typography variant="h6" gutterBottom>
-        Custom API access 
-      </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
-        Use Infura.io, Quicknode, Etherscan.io, geth or others
-      </Typography>
-      
-      </Grid>
-      <Grid item xs={4}>
-                    <FeaturedPlayListIcon fontSize="large"/>
-                    <Typography variant="h6" gutterBottom>
-        Double your power
-      </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
-        Search for two words at the same time 
-      </Typography>
-      
-      </Grid>
-      <Grid item xs={4}>
-                    <BallotIcon fontSize="large"/>
-                    <Typography variant="h6" gutterBottom>
-        Custom wallet path 
-      </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
-        For those who stored funds deeper than Mariana Trench
-      </Typography>
-      
-      </Grid>
-      <Divider style={{width:'100%'}} />
-      <Grid item xs={4} /> 
-      <Grid item xs={4}>
-      <VisibilityIcon fontSize="large"/>
-                    <Typography variant="h6" gutterBottom>
-        See it with your eyes
-      </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
-        See what is being analysed and not just a loading icon
-
-      </Typography>
-      <Divider style={{width:'100%'}} />
-      </Grid>
-
-
-                </Grid>
+              
+                   
 
                 </div>) : <span />}
 
           {this.state.signedIn === true && this.state.isPaid === false ? (
             <div>
-                    You're still on the free version. Purchase our premium access now
                     <br />
-                    <Button variant="contained" color="primary">Buy Now</Button>
-                        <br /> <br />
-                        <h4>Here is what you are missing</h4>
-                        <br /> <br />
-                    <Grid container spacing={3}>
-                <Grid item xs={4}>
-                    <LockOpenIcon fontSize="large"/>
+              <Container maxWidth="xs">
+                 <Card>
+                <CardHeader
+                  title="Premium Access"
+                  subheader="Unlimited Features"
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  style={{backgroundColor:"#eee"}}
+                  // action={tier.title === 'Pro' ? <StarIcon /> : null}
+                />
+                <CardContent>
+                  <div >
+                    <Typography component="h2" variant="h5" color="textSecondary">
+                      <strike>$189.99</strike>
+                    </Typography>
+                    <Typography component="h2" variant="h4" color="textPrimary">
+                    $49.99
+                    </Typography>
+                    <Typography variant="h6" color="secondary">
+                      Limited Offer
+                    </Typography>
+                    <br />
+                    <ul style={{listStyle:'none',margin:'0',padding:'0'}}>
+                    <Typography component="li" variant="subtitle1" align="center">
+                        Forever Access, Updates and Premium Features
+                      </Typography>
+                      <Typography component="li" variant="subtitle1" align="center">
+                        Buy Now Keep It Forever 
+                      </Typography>
+                    </ul>
+                  </div>
+                  <br /> <br />
+                 <Grid>
+                 <LockOpenIcon fontSize="large"/>
                     <Typography variant="h6" gutterBottom>
         Custom API access 
       </Typography>
       <Typography variant="subtitle2" gutterBotton> 
-        Use Infura.io, Quicknode, Etherscan.io, geth or others
+      Use Infura.io, Quicknode, Etherscan.io, geth or others and increase your performance
       </Typography>
-      
-      </Grid>
-      <Grid item xs={4}>
-                    <FeaturedPlayListIcon fontSize="large"/>
+                 </Grid>
+                <Divider style={{width:'100%'}} />
+                <br />
+                 <Grid>
+                 <FeaturedPlayListIcon fontSize="large"/>
                     <Typography variant="h6" gutterBottom>
         Double your power
       </Typography>
       <Typography variant="subtitle2" gutterBotton> 
         Search for two words at the same time 
       </Typography>
-      
-      </Grid>
-      <Grid item xs={4}>
-                    <BallotIcon fontSize="large"/>
+                 </Grid>
+                 <Divider style={{width:'100%'}} />
+                 <br />
+                 <Grid>
+                 <BallotIcon fontSize="large"/>
                     <Typography variant="h6" gutterBottom>
         Custom wallet path 
       </Typography>
       <Typography variant="subtitle2" gutterBotton> 
         For those who stored funds deeper than Mariana Trench
       </Typography>
-      
-      </Grid>
-      <Divider style={{width:'100%'}} />
-      <Grid item xs={4} /> 
-      <Grid item xs={4}>
-      <VisibilityIcon fontSize="large"/>
+                 </Grid>
+                                  <Divider style={{width:'100%'}} />
+                                  <br />
+                <Grid>
+                <VisibilityIcon fontSize="large"/>
                     <Typography variant="h6" gutterBottom>
         See it with your eyes
       </Typography>
@@ -264,11 +252,37 @@ export default class RecoverSeed extends React.Component {
         See what is being analysed and not just a loading icon
 
       </Typography>
-      <Divider style={{width:'100%'}} />
+      <Divider style={{width:'100%'}} /> 
+      <br />
+      <Grid>
+      <ViewQuiltIcon fontSize="large"/>
+                    <Typography variant="h6" gutterBottom>
+        Other Blockchains
+      </Typography>
+      <Typography variant="subtitle2" gutterBotton> 
+        Do it on other blockchains than Ethereum. 
+
+      </Typography>
       </Grid>
-
-
                 </Grid>
+
+                     {/* <ul>
+                     <Typography component="li" variant="subtitle1" align="center">
+                        Just Now
+                      </Typography>
+                     </ul> */}
+                </CardContent>
+                <CardActions>
+                  <Button fullWidth variant="contained" color="secondary">
+                    Buy Now
+                  </Button>
+                </CardActions>
+              </Card>
+              </Container>
+
+                        <br /> <br />
+                       
+
 
                 </div>
 
