@@ -1,14 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import SpeedIcon from '@material-ui/icons/Speed';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import SecurityIcon from '@material-ui/icons/Security';
@@ -19,22 +13,22 @@ import BallotIcon from '@material-ui/icons/Ballot';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import Recover_basic from './Recover_basic';
-import Recover_advanced from './Recover_advanced';
+import Recoverbasic from './Recover_basic';
+import Recoveradvanced from './Recover_advanced';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import recovery from './Smart Contract/recovery';
 import Container from '@material-ui/core/Container';
 
-import words from './words';
-import { CircularProgress } from '@material-ui/core';
-const Web3 = require("web3");
+// import words from './words';
+// import { CircularProgress } from '@material-ui/core';
+// const Web3 = require("web3");
 
-var ethers = require("ethers");
+// var ethers = require("ethers");
 
 
+// var coinbase = require('coinbase-commerce-node');
 
 
   firebase.initializeApp({
@@ -55,6 +49,7 @@ export default class RecoverSeed extends React.Component {
         snackBar:false,
         isPaid:false,
     }
+
 
     componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
@@ -78,7 +73,7 @@ export default class RecoverSeed extends React.Component {
     getInfo = async() => {
       if(this.state.uid !== null){
       let x = await db.collection('users').doc(this.state.uid.uid);
-      let query = x.get().then(doc => {
+      x.get().then(doc => {
         if (!doc.exists) {
           this.setState({isPaid:false});
         } else {
@@ -115,22 +110,22 @@ export default class RecoverSeed extends React.Component {
                 <Divider style={{width:'100'}} />
                 <br />
                 <Grid container spacing={3} style={{backgroundImage:'linear-gradient(rgb(245, 0, 87),black)',}} >
-                <Grid xs={12} style={{color:'white'}} >
+                <Grid item xs={12} style={{color:'white'}} >
                     <h1>Why this tool</h1>
                   </Grid>
-                  <Grid xs={12} md={4} style={{color:'white'}} >
+                  <Grid item xs={12} md={4} style={{color:'white'}} >
                   <SpeedIcon fontSize="large" htmlColor="red" />
                     <h3>FAST</h3>
                     <p>Up to 100 mnemonic attempts/s</p>
                     <br />
                   </Grid>
-                  <Grid xs={12} md={4} style={{color:'white'}} >
+                  <Grid item xs={12} md={4} style={{color:'white'}} >
                     <ViewModuleIcon fontSize="large" htmlColor="red" />
                     <h3>Real-Time Blockchain Analysis</h3>
                     <p>Data is checked at the latest block mined</p>
                     <br />
 
-                  </Grid><Grid xs={12} md={4} style={{color:'white'}} >
+                  </Grid><Grid item xs={12} md={4} style={{color:'white'}} >
                     <SecurityIcon fontSize="large" htmlColor="red" />
                     <h3>Secure</h3>
                     <p>We don't collect or share your data
@@ -144,7 +139,7 @@ export default class RecoverSeed extends React.Component {
                 <Divider style={{width:'100'}} />
             <br />
             
-            {this.state.signedIn === false ? <Recover_basic /> : null}
+            {this.state.signedIn === false ? <Recoverbasic /> : null}
                {/* {this.state.isPaid === true ? <p>Paid user</p> : <p>not paid</p>} */}
                 {this.state.signedIn === true ? (
                   <div>
@@ -152,7 +147,7 @@ export default class RecoverSeed extends React.Component {
                     <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
 
                     </Grid>
-                    {this.state.isPaid === false ?                     <Recover_basic /> : null}
+                    {this.state.isPaid === false ?                     <Recoverbasic /> : null}
                   </div>
                 ) : <span /> }
                
@@ -215,7 +210,7 @@ export default class RecoverSeed extends React.Component {
                     <Typography variant="h6" gutterBottom>
         Custom API access 
       </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
+      <Typography variant="subtitle2" gutterBottom> 
       Use Infura.io, Quicknode, Etherscan.io, geth or others and increase your performance
       </Typography>
                  </Grid>
@@ -226,7 +221,7 @@ export default class RecoverSeed extends React.Component {
                     <Typography variant="h6" gutterBottom>
         Double your power
       </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
+      <Typography variant="subtitle2" gutterBottom> 
         Search for two words at the same time 
       </Typography>
                  </Grid>
@@ -237,7 +232,7 @@ export default class RecoverSeed extends React.Component {
                     <Typography variant="h6" gutterBottom>
         Custom wallet path 
       </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
+      <Typography variant="subtitle2" gutterBottom> 
         For those who stored funds deeper than Mariana Trench
       </Typography>
                  </Grid>
@@ -248,7 +243,7 @@ export default class RecoverSeed extends React.Component {
                     <Typography variant="h6" gutterBottom>
         See it with your eyes
       </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
+      <Typography variant="subtitle2" gutterBottom> 
         See what is being analysed and not just a loading icon
 
       </Typography>
@@ -259,7 +254,7 @@ export default class RecoverSeed extends React.Component {
                     <Typography variant="h6" gutterBottom>
         Other Blockchains
       </Typography>
-      <Typography variant="subtitle2" gutterBotton> 
+      <Typography variant="subtitle2" gutterBottom> 
         Do it on other blockchains than Ethereum. 
 
       </Typography>
@@ -273,10 +268,13 @@ export default class RecoverSeed extends React.Component {
                      </ul> */}
                 </CardContent>
                 <CardActions>
+                  <a style={{textDecoration:'none',width:'100%'}} href="https://commerce.coinbase.com/checkout/58f49555-46fe-4106-a921-24d8e14a7122" target="_blank" rel='noopener noreferrer'>
                   <Button fullWidth variant="contained" color="secondary">
                     Buy Now
                   </Button>
+                  </a>
                 </CardActions>
+
               </Card>
               </Container>
 
@@ -286,7 +284,7 @@ export default class RecoverSeed extends React.Component {
 
                 </div>
 
-          ) : this.state.signedIn === true && this.state.isPaid === true ? <Recover_advanced /> : <span /> }
+          ) : this.state.signedIn === true && this.state.isPaid === true ? <Recoveradvanced /> : <span /> }
 
 
             </div>

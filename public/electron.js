@@ -24,7 +24,7 @@ function createWindow() {
     width: 1024,
     height: 1024,
     webPreferences:{
-        nodeIntegration:true
+        nodeIntegration:false
     }
   });
   mainWindow.webContents.openDevTools();
