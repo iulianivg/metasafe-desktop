@@ -119,8 +119,7 @@ this.setState({snackBar:true});
 
 }
     catch(err){
-        this.setState({hasStarted:false})
-        console.log(err.message);
+        this.setState({hasStarted:false,loader:100})
     }
 }
 
@@ -186,8 +185,7 @@ this.setState({snackBar:true});
 
 }
     catch(err){
-        this.setState({hasStarted:false})
-        console.log(err.message);
+        this.setState({hasStarted:false,loader:100})
     }
 }
 

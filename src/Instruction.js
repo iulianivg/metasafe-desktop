@@ -2,12 +2,6 @@ import React from 'react';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Project from './icons/new_project.png'
-import Secret from './icons/project_secret.png'
-import Write from './icons/write_info.png'
-import Result from './icons/result.png';
-import Result2 from './icons/result2.png';
-import Recover from './icons/recover2.png';
 export default class Instructions extends React.Component {
 
     componentDidMount() {
@@ -35,22 +29,22 @@ Instructions for <span style={{border:'1px solid black',textTransform:'none'}}>M
       <p style={{textAlign:'left'}}>
       Navigate to <a href="https://infura.io" target="_blank"  rel='noopener noreferrer'>Infura.io</a> and create an account. Then create a new project.
       </p>
-      <img src={Project} width="100%" />
+      <img src={require('./icons/new_project.png')} width="100%" />
       <p style={{textAlign:'left'}}>
          Copy your API key/endpoint which starts with "https://"
       </p>
-      <img src={Secret} width="100%" />
+      <img src={require('./icons/project_secret.png')} width="100%" />
       <Typography variant="subtitle2" gutterBottom style={{textAlign:'left',fontWeight:'bold'}}>
         Step 2 - Analyze your seed phrase 
       </Typography>
       <p style={{textAlign:'left'}}>
     Paste your API link. Select the word you don't remember and write your seed phrases. Click on "Recover Seed Phrase" and wait a few seconds. 
       </p>
-      <img src={Write} width="100%" />
+      <img src={require('./icons/write_info.png')} width="100%" />
       <p style={{textAlign:'left'}}>
             If the analyzer finds anything it will let you know! You can now use the seed phrase to recover your funds. 
       </p>
-      <img src={Result} width="100%" />
+      <img src={require('./icons/result.png')} width="100%" />
       <br /> <br /> <br />
       <Typography variant="h6" style={{fontWeight:'bold', textAlign:'left',color:'#3f51b5'}} gutterBottom>
                 Premium Account
@@ -64,7 +58,7 @@ Instructions for <span style={{border:'1px solid black',textTransform:'none'}}>M
             Log in into your <span style={{border:'1px solid black',textTransform:'none'}}>MetaSafe</span> account. Use  <a href="https://infura.io" target="_blank"  rel='noopener noreferrer'>Infura.io</a>,  <a href="https://https://www.quiknode.io/" target="_blank"  rel='noopener noreferrer'>Quiknode.io</a>  or download your own blockchain node. 
             Set-up your wallet path and decide how many words at the same time you want the tool to recover. Write your seed phrase and click on "Recover Seed Phrase".
       </p>
-      <img src={Recover} width="100%" />
+      <img src={require('./icons/recover2.png')} width="100%" />
       <Typography variant="subtitle2" gutterBottom style={{textAlign:'left',fontWeight:'bold'}}>
         Step 2 - Recover your funds
       </Typography>
@@ -101,7 +95,7 @@ Instructions for <span style={{border:'1px solid black',textTransform:'none'}}>M
                 of all seed phrases that you can try to remember and use to access your wallet depending on which one you retain appropriate. 
 
                 </p>
-                <img src={Result2} width="100%" />
+                <img src={require('./icons/result2.png')} width="100%" />
             </Container>
                  
                 </div>

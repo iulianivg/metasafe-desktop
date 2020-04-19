@@ -25,7 +25,7 @@ import RecoverSeed from './RecoverSeed.js';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import Instruction from './Instruction.js';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
