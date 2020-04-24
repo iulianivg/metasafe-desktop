@@ -152,7 +152,7 @@ export default class RecoverSeed extends React.Component {
                 {this.state.signedIn === false ? (<div>
                   <Grid item xs={12}>
 
-                    You're on the free version. Please sign in and get our premium access to get more features and use our tool on other blockchains than Ethereum.
+                    You're on the free version. Please sign in and get our premium access to get more features.
                         <br /> <br />
                         </Grid> 
                   <Grid item xs={12}>
@@ -172,65 +172,66 @@ export default class RecoverSeed extends React.Component {
                     <br />
               <Container maxWidth="lg">
                <Grid container spacing={3}> 
-              <Grid item xs={5} md={7} lg={8}>
-              <Typography component="h2" variant="h5" color="textPrimary">
+              <Grid item xs={5} md={7} lg={8} style={{borderRadius:'20px',boxShadow:'0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',backgroundImage:`linear-gradient(black, #e33371)`,color:'white'}}>
+              <Typography component="h2" variant="h5" style={{color:'white'}}>
               Get premium access and level up your power
 
               </Typography>
-              <Typography component="h2" variant="h6" color="textSecondary">
+              <Typography component="h2" variant="h6" style={{color:'white'}}>
                     Unlimited Features
                     </Typography>
                     <br />
-                    <Typography variant="body1" gutterBottom>
-        Why losing time when you can get more speed and more features buying our premium access?
+                    <hr />
+                    <Typography variant="body1" gutterBottom style={{color:'white'}}>
+        Why losing time when you can get more speed?
       </Typography>
       <Grid container spacing={1}>
       <Grid item xs={6}>
       <HourglassFullIcon /> 
-      <p style={{backgroundColor:'#ce0000',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
-      <p style={{color:'red'}}>Up to 25 seed phrases/s</p>
+      <p style={{backgroundColor:'#d32f2f',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
+      <p style={{color:'white'}}>Up to 25 seed phrases/s</p>
       
       </Grid>
 
       <Grid item xs={6}>
       <FastForwardIcon /> 
-      <p style={{backgroundColor:'green',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
-      <p style={{color:'green'}}>Up to 100 seed phrases/s<sup>*</sup></p>
+      <p style={{backgroundColor:'#64b5f6',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
+      <p style={{color:'white',fontWeight:'bold'}}>Up to 100 seed phrases/s<sup>*</sup></p>
       </Grid>
       </Grid>
       <hr />
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1" gutterBottom style={{color:'white'}}>
         Don't remember your seed phrase very well? Try two words at the same time
       </Typography>
       <Grid container spacing={1}>
       <Grid item xs={6}>
       <Filter1RoundedIcon /> 
-      <p style={{backgroundColor:'#ce0000',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
-      <p style={{color:'red'}}>2048 attempts / seed phrase</p>
+      <p style={{backgroundColor:'#d32f2f',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
+      <p style={{color:'white'}}>2048 attempts / seed phrase</p>
       </Grid>
       <Grid item xs={6}>
       <Filter2RoundedIcon />
-      <p style={{backgroundColor:'green',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
-      <p style={{color:'green'}}>4,194,304 attemps / seed phrase</p>
+      <p style={{backgroundColor:'#64b5f6',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
+      <p style={{color:'white',fontWeight:'bold'}}>4,194,304 attemps / seed phrase</p>
       </Grid>
       </Grid>
       <hr /> 
-      <Typography variant="body1" gutterBottom>
+      <Typography variant="body1" gutterBottom style={{color:'white'}}>
         See what seed phrases are being analyzed
       </Typography>
       <Grid container spacing={1}>
       <Grid item xs={6}>
       <VisibilityOffRoundedIcon /> 
-      <p style={{backgroundColor:'#ce0000',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
-      <CircularProgress style={{color:'#ce0000'}} variant="static" value={21.16} />
-      <p>12.1%</p>
+      <p style={{backgroundColor:'#d32f2f',color:'white',width:'100%',borderRadius:'50px'}}>FREE</p>
+      <CircularProgress style={{color:'#d32f2f'}} variant="static" value={21.16} />
+      <p style={{color:'white'}}>12.1%</p>
       </Grid>
       <Grid item xs={6}>
       <VisibilityRoundedIcon />
-      <p style={{backgroundColor:'green',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
-      <CircularProgress variant="static" value={80.99} />
-      <p>89.9%</p>
-      <p>+</p>
+      <p style={{backgroundColor:'#64b5f6',color:'white', width:'100%',borderRadius:'50px'}}>PREMIUM</p>
+      <CircularProgress variant="static" style={{color:'#64b5f6'}} value={80.99} />
+      <p style={{color:'white',fontWeight:'bold'}}>89.9%</p>
+      <p style={{color:'white',fontWeight:'bold'}}>+</p>
       <Paper elevation={1} style={{textAlign:'left'}}>
 
       <div style={{padding:'5px'}}>
@@ -245,16 +246,17 @@ export default class RecoverSeed extends React.Component {
 </Grid>
 <hr /> 
 
-<p style={{fontSize:'11px',color:'grey',textAlign:'left'}}>*When fully optimized as recommended in our guidance</p>
+<p style={{fontSize:'11px',color:'white',textAlign:'left'}}>*When fully optimized as recommended in our guidance</p>
               </Grid>
               <Grid item xs={7} md={5} lg={4}>
               <Card>
                 <CardHeader
-                  title="Premium Access"
-                  subheader="Unlimited Features"
+                  title={<span style={{border:'1px solid #ffffff',color:'white'}}> MetaSafe</span>}
+                  subheader={<span style={{color:'white'}}>Premium</span>}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
                   style={{backgroundColor:"#eee"}}
+                  className="premium"
                   // action={tier.title === 'Pro' ? <StarIcon /> : null}
                 />
                 <CardContent>
