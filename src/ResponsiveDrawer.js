@@ -22,8 +22,10 @@ import Text from './Text';
 import MnemonicMaker from './MnemonicMaker';
 import Donate from './Donate.js';
 import RecoverSeed from './RecoverSeed.js';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Instruction from './Instruction.js';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
@@ -100,23 +102,16 @@ function ResponsiveDrawer(props) {
               <ListItemText primary="Home" />
           </ListItem>
           </Link>
-          <Link to="/analysis" style={{textDecoration:'none',color:'inherit'}}>
-          <ListItem  button >
-              <ListItemIcon>
-                  <ListAltTwoToneIcon htmlColor="#115293" />
-              </ListItemIcon>
-              <ListItemText primary="Mnemonic Analyzer" />
-          </ListItem>
-          </Link>
+        
 
-          <Link to="/donate" style={{textDecoration:'none',color:'inherit'}}>
+          <a href="https://commerce.coinbase.com/checkout/2e098e34-a799-40ca-826f-81c9d10d7d8e" target="_blank" rel='noopener noreferrer' style={{textDecoration:'none',color:'inherit'}}>
           
           <ListItem button>
           <ListItemIcon>
               <ThumbUpIcon htmlColor="#115293" />
           </ListItemIcon>
           <ListItemText primary="Support Us" />
-          </ListItem></Link>
+          </ListItem></a>
 
           
           {/* <ListItem button onClick={() => changeTab(4)}>
@@ -138,14 +133,14 @@ function ResponsiveDrawer(props) {
       </List>
       <Divider />
       <List>
-      <Link to="/recover" style={{textDecoration:'none',color:'inherit'}}>
-            <ListItem button>
-            <ListItemIcon>
-            <CachedIcon htmlColor="#115293" />
-            </ListItemIcon>
-            <ListItemText primary="Recover Your Seed Phrase" />
-            </ListItem>
-          </Link>
+        <Link to ="/instructions" style={{textDecoration:'none',color:'inherit'}}>
+        <ListItem button>
+  <ListItemIcon>
+    <MenuBookIcon htmlColor="#115293" /> 
+    </ListItemIcon>
+    <ListItemText primary="Instructions" /> 
+        </ListItem>
+        </Link>
       </List>
     </div>
   );
@@ -205,19 +200,15 @@ function ResponsiveDrawer(props) {
          <div className={classes.toolbar} />
          <Switch>
           <Route exact path="/">
-            <MnemonicMaker />
+          <RecoverSeed />
           </Route>
-          <Route exact path="/analysis">
-            <Text />
-          </Route>
-          <Route exact path="/donate">
-              <Donate />
-          </Route>
+
           <Route exact path="/disclaimer">
               <Disclaimer />
           </Route>
-          <Route exact path="/recover">
-            <RecoverSeed />
+
+          <Route exact path="/instructions">
+              <Instruction />
           </Route>
         </Switch>
             {/* {tabOpen === 1 ?         <MnemonicMaker /> : tabOpen=== 2 ? <Text /> :  tabOpen === 3 ? <WHOpage /> : <span />} */}

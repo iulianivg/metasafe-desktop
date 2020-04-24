@@ -2,4 +2,24 @@
   text-align: center;
 }
 
+@keyframes animatedBackground {
+  from {
+    background-position: 50% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
 
+.premium {
+  background-image:url('./icons/stars.jpg');
+  color:white!important;
+  animation:animatedBackground 10s linear infinite alternate;
+
+}
+
+
+.premium:hover {
+  box-shadow:  0 0 0 7px black;
+
+}

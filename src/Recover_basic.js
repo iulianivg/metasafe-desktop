@@ -4,14 +4,13 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import Slider from '@material-ui/core/Slider';
+
 
 import words from './words';
 import { CircularProgress } from '@material-ui/core';
@@ -59,6 +58,8 @@ state = {
     apiLink:'',
     loader:0,
 }
+
+
 forceWord = async() => {
     try{ 
 
@@ -116,7 +117,7 @@ this.setState({snackBar:true});
 
 }
     catch(err){
-        console.log(err.message);
+        this.setState({hasStarted:false,loader:100})
     }
 }
 
@@ -189,27 +190,26 @@ render()
                             <Grid container spacing={3} >
 
  <Grid item xs={6}>
-              <TextField fullWidth style={{marginLeft:'11%'}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Infura API Link" />
+              <TextField fullWidth style={{}} required id="standard-basic" value={this.state.apiLink} onChange={(event) => this.setState({apiLink:event.target.value.trim()})} label="Infura API Link" />
               </Grid>
               <Grid item xs={6}> 
 
               </Grid>
               <Divider style={{width:'100%'}} />
                 <Grid item xs={12} md={8}>
-
-        <TextField required id="standard-basic" disabled={this.state.word1Disabled} label="Word 1" value={this.state.word1} onChange={(event) => this.setState({word1:event.target.value.trim()})} />
-        <TextField required id="standard-basic" disabled={this.state.word2Disabled} label="Word 2" value={this.state.word2} onChange={(event) => this.setState({word2:event.target.value.trim()})} />
-        <TextField required id="standard-basic" disabled={this.state.word3Disabled} label="Word 3" value={this.state.word3} onChange={(event) => this.setState({word3:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word4Disabled} label="Word 4" value={this.state.word4} onChange={(event) => this.setState({word4:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word5Disabled} label="Word 5" value={this.state.word5} onChange={(event) => this.setState({word5:event.target.value.trim()})} />
-        <TextField required id="standard-basic" disabled={this.state.word6Disabled} label="Word 6" value={this.state.word6} onChange={(event) => this.setState({word6:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word7Disabled} label="Word 7" value={this.state.word7} onChange={(event) => this.setState({word7:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word8Disabled} label="Word 8" value={this.state.word8} onChange={(event) => this.setState({word8:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word9Disabled} label="Word 9" value={this.state.word9} onChange={(event) => this.setState({word9:event.target.value.trim()})}/>
-        <TextField required id="standard-basic" disabled={this.state.word10Disabled} label="Word 10" value={this.state.word10} onChange={(event) => this.setState({word10:event.target.value.trim()})} />
-        <TextField required id="standard-basic" disabled={this.state.word11Disabled} label="Word 11" value={this.state.word11} onChange={(event) => this.setState({word11:event.target.value.trim()})} />
-        <TextField required id="standard-basic" disabled={this.state.word12Disabled} label="Word 12" value={this.state.word12} onChange={(event) => this.setState({word12:event.target.value.trim()})} />
-                </Grid>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word1Disabled} label="Word 1" value={this.state.word1} onChange={(event) => this.setState({word1:event.target.value.trim()})} />
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word2Disabled} label="Word 2" value={this.state.word2} onChange={(event) => this.setState({word2:event.target.value.trim()})} />
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word3Disabled} label="Word 3" value={this.state.word3} onChange={(event) => this.setState({word3:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word4Disabled} label="Word 4" value={this.state.word4} onChange={(event) => this.setState({word4:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word5Disabled} label="Word 5" value={this.state.word5} onChange={(event) => this.setState({word5:event.target.value.trim()})} />
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word6Disabled} label="Word 6" value={this.state.word6} onChange={(event) => this.setState({word6:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word7Disabled} label="Word 7" value={this.state.word7} onChange={(event) => this.setState({word7:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word8Disabled} label="Word 8" value={this.state.word8} onChange={(event) => this.setState({word8:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word9Disabled} label="Word 9" value={this.state.word9} onChange={(event) => this.setState({word9:event.target.value.trim()})}/>
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word10Disabled} label="Word 10" value={this.state.word10} onChange={(event) => this.setState({word10:event.target.value.trim()})} />
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word11Disabled} label="Word 11" value={this.state.word11} onChange={(event) => this.setState({word11:event.target.value.trim()})} />
+        <TextField required id="standard-basic" autoComplete="off" disabled={this.state.word12Disabled} label="Word 12" value={this.state.word12} onChange={(event) => this.setState({word12:event.target.value.trim()})} />
+             </Grid>
                 <Grid item xs={12} md={4}>
                 <FormControl fullWidth required>
     <InputLabel htmlFor="age-native-required"> Word # I don't remember</InputLabel>
@@ -255,7 +255,9 @@ render()
                         <div>
                             {this.state.loader < 99 ? (<div>                        Analyzing 2048 possible seed phrases...
                             If anything is found it will appear here.  <span style={{fontWeight:'bold'}}>Do not close this window.</span> </div>) : <div>Finished</div> }
-                    {this.state.results.length === 0 && this.state.hasStarted === false ? <p>Nothing found</p> : <span />}
+                            
+                    {this.state.results.length === 0 && this.state.hasStarted === false ? <p>Nothing found</p> : null}
+
                         <Paper elevation={1}>
                         <div style={{height:'310px',overflow:'scroll',textAlign:'left'}}>
                     {this.state.results}

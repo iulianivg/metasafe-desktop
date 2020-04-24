@@ -29,8 +29,6 @@ import {generateMnemonic12, generateMnemonic24, analysis12, analysis24} from 'me
 
 
 var ethers = require("ethers");
-const words = require("./words");
-const words240 = require("./240words");
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
